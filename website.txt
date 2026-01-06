@@ -1,0 +1,667 @@
+syslog
+https 证书 
+第三方机构申请 let's encrypt zerossl 
+远程 导入到设备
+登录
+详细设计文档
+
+
+cat -n /etc/ssl/certs/ca-certificates.crt
+openssl s_client -showcerts -connect letsencrypt.org:443 </dev/null 2>/dev/null | awk '/BEGIN CERT/{p=1} p; /END CERT/{p=0}' > test.pem
+ls
+sudo cat test.pem >> /etc/ssl/certs/ca-certificates.crt
+cat test.pem
+cat -n /etc/ssl/certs/ca-certificates.crt
+openssl verify -CAfile /etc/ssl/certs/ca-certificates.crt test.pem
+curl -v https://letsencrypt.org
+
+
+{openssl s_client -connect registry.npmmirror.com:443 -showcerts </dev/null 2>/dev/null | awk '/BEGIN CERT/{i++} {print > "cert"i".pem"}'
+
+    svn st | grep "^M"
+
+    tail  /webs/nginx/logs/error.log -n500
+
+    tftp get 10.184.136.26 nginx.conf localfile nginx.conf
+    tftp get 10.184.136.26 nginx localfile nginx
+    tftp get 192.168.1.2 nginx localfile nginx
+
+    tftp get 10.184.136.26 gdb localfile gdb
+    tftp get 192.168.1.2 gdb localfile gdb
+
+    tftp put 10.184.136.26 error.log localfile error.log
+
+    mv /ram/nginx.conf  /webs/nginx/conf/
+
+    chmod +x /ram/nginx 
+    mv /ram/nginx  /usr/bin 
+    nginx &
+
+    cat /dev/null >  /webs/nginx/logs/error.log
+    clear logging logbuffer 
+
+    tftp get 10.184.136.26 libwebhandler.so localfile libwebhandler.so
+    tftp get 192.168.1.2 libwebhandler.so localfile libwebhandler.so
+    tftp get 10.184.136.26 libwebotap.so localfile libwebotap.so
+    tftp get 192.168.1.2 libwebotap.so localfile libwebotap.so
+    tftp get 10.184.136.26 libwebeasycoding.so localfile libwebeasycoding.so
+
+    tftp get 10.184.136.26 digicap.dav localfile digicap.dav
+    tftp get 192.168.1.2 digicap.dav localfile digicap.dav
+    tftp -m binary 10.184.136.26 -c put 123.pcap
+
+        time.sleep(1000)
+    find ./ -type f -name "*.spec" -print0 | xargs -0 grep "webotap"
+
+    gre隧道建立命令
+    ip tunnel add gre1 mode gre local 10.184.136.116 remote 10.184.136.106
+    ip link set gre1 up
+    ip addr add 20.20.20.1/24 dev gre1
+
+    ip tunnel add gre1 mode gre remote 10.184.136.116 local 10.184.136.106 ttl 255
+    ip link set gre1 up
+    ip addr add 20.20.20.2/24 dev gre1
+}
+
+
+strace   -v -s 99999 -yy  -e trace=all  -e abbrev=none  -e verbose=all   -e raw=all   -e signal=all   -e decode-fds=all   -o strace_full.log   -p [PID]
+strace   -v -s 99999 -yy  -p
+
+1. 修改 OVSDB 服务器日志级别
+ovs-appctl -t ovsdb-server vlog/set any:dbg
+2. 修改 OVS 交换机日志级别
+ovs-appctl -t ovs-vswitchd vlog/set any:dbg
+3. 验证修改结果
+# 查看当前日志级别
+ovs-appctl -t ovsdb-server vlog/list
+ovs-appctl -t ovs-vswitchd vlog/list
+
+# 恢复为默认的 info 级别
+ovs-appctl -t ovsdb-server vlog/set any:info
+ovs-appctl -t ovs-vswitchd vlog/set any:info
+sudo systemctl restart openvswitch-switch
+
+流量控制和拥塞控制
+https://blog.csdn.net/2301_77599076/article/details/148674566
+
+http队头阻塞
+https://article.juejin.cn/post/7089438618372030501
+
+//MQTT3.1.1中文版pdf
+https://blog.mcxiaoke.com/mqtt/protocol/MQTT-3.1.1-CN.pdf
+
+inadyn.conf 配置文件详解
+{   
+    period = 300
+    forced-update = false
+    background = true
+    log-level = debug
+    log-file = /var/log/inadyn.log
+
+    provider cloudflare.com {
+        username = yourdomain.com
+        password = your-api-token
+        hostname = yourhost.yourdomain.com
+        ttl = 1
+        proxied = false
+    }
+
+    provider no-ip.com {
+        username = lichao   
+        password = Lc990418.
+        hostname = yourhost.no-ip.com
+    }
+}
+python
+{
+    我们不能将关键字用作  变量名，函数名或任何其他标识符。它们用于定义Python语言的语法和结构。
+
+    在Python中，关键字区分大小写。
+
+    Python 3.7中有 33 个关键字。该数字在一段时间内可能会略有变化。
+
+    所有关键字必须是小写的，其中 True，False 和 None 除外。下面列出了所有关键字。
+
+    Python中的关键字
+    False	await	else	import	pass
+    None	break	except	in	raise
+    True	class	finally	is	return
+    and	continue	for	lambda	try
+    as	def	from	nonlocal	while
+    assert	del	global	not	with
+    async	elif	if	or	yield
+}
+
+f-stack
+{
+    Quick Start
+    # clone F-Stack
+    mkdir -p /data/f-stack
+    git clone https://github.com/F-Stack/f-stack.git /data/f-stack
+
+    # Install libnuma-dev
+    yum install numactl-devel          # on Centos
+    #sudo apt-get install libnuma-dev  # on Ubuntu
+
+    pip3 install pyelftools --upgrade
+    # Install python and modules for running DPDK python scripts
+    pip3 install pyelftools --upgrade # RedHat/Centos
+    sudo apt install python # On ubuntu
+    #sudo pkg install python # On FreeBSD
+
+    # Install dependencies (FreeBSD only)
+    #pkg install meson pkgconf py38-pyelftools
+
+    cd f-stack
+    # Compile DPDK
+    cd dpdk/
+    # re-enable kni now, to remove kni later
+    # disable crypto/openssl,net/ice for Redhat/Centos 7.x.
+    meson -Denable_kmods=true -Ddisable_libs=flow_classify -Ddisable_drivers=crypto/openssl,net/ice build
+    ninja -C build
+    ninja -C build install
+
+    # Set hugepage (Linux only)
+    # single-node system
+    echo 1024 > /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages
+
+    # or NUMA (Linux only)
+    echo 1024 > /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
+    echo 1024 > /sys/devices/system/node/node1/hugepages/hugepages-2048kB/nr_hugepages
+
+    # Using Hugepage with the DPDK (Linux only)
+    mkdir /mnt/huge
+    mount -t hugetlbfs nodev /mnt/huge
+
+    # Close ASLR; it is necessary in multiple process (Linux only)
+    echo 0 > /proc/sys/kernel/randomize_va_space
+
+    # Offload NIC
+    # For Linux:
+    modprobe uio
+    insmod /home/lichao/gitWork/f-stack/dpdk/build/kernel/linux/igb_uio/igb_uio.ko
+    insmod /home/lichao/gitWork/f-stack/dpdk/build/kernel/linux/kni/rte_kni.ko carrier=on # carrier=on is necessary, otherwise need to be up `veth0` via `echo 1 > /sys/class/net/veth0/carrier`
+    python dpdk-devbind.py --status
+    ifconfig ens38 down
+    python dpdk-devbind.py --bind=igb_uio ens38 # assuming that use 10GE NIC and eth0
+
+    # For FreeBSD:
+    # Refer DPDK FreeBSD guide to set tunables in /boot/loader.conf
+    # Below is an example used for our testing machine
+    #echo "hw.nic_uio.bdfs=\"2:0:0\"" >> /boot/loader.conf
+    #echo "hw.contigmem.num_buffers=1" >> /boot/loader.conf
+    #echo "hw.contigmem.buffer_size=1073741824" >> /boot/loader.conf
+    #kldload contigmem
+    #kldload nic_uio
+
+    # On Ubuntu, use gawk instead of the default mawk.
+    #sudo apt-get install gawk  # or execute `sudo update-alternatives --config awk` to choose gawk.
+
+    # Install dependencies for F-Stack
+    sudo apt install gcc make libssl-dev                            # On ubuntu
+    #sudo pkg install gcc gmake openssl pkgconf libepoll-shim       # On FreeBSD
+
+    # Upgrade pkg-config while version < 0.28
+    #cd /data
+    #wget https://pkg-config.freedesktop.org/releases/pkg-config-0.29.2.tar.gz
+    #tar xzvf pkg-config-0.29.2.tar.gz
+    #cd pkg-config-0.29.2
+    #./configure --with-internal-glib
+    #make
+    #make install
+    #mv /usr/bin/pkg-config /usr/bin/pkg-config.bak
+    #ln -s /usr/local/bin/pkg-config /usr/bin/pkg-config
+
+    # Compile F-Stack
+    export FF_PATH=/home/lichao/gitWork/f-stack
+    export PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/local/lib64/pkgconfig:/usr/lib/pkgconfig
+    cd /home/lichao/gitWork/f-stack/lib/
+    make    # On Linux
+    #gmake   # On FreeBSD
+
+    # Install F-STACK
+    # libfstack.a will be installed to /usr/local/lib
+    # ff_*.h will be installed to /usr/local/include
+    # start.sh will be installed to /usr/local/bin/ff_start
+    # config.ini will be installed to /etc/f-stack.conf
+    make install    # On Linux
+    #gmake install   # On FreeBSD
+}
+{
+    gdb info
+    info breakpoints：显示当前设置的断点信息，包括断点编号、断点位置、断点条件等。
+    info watchpoints：显示当前设置的观察点信息，即监视变量的值的变化。
+    info frame：显示当前函数的堆栈帧信息，包括函数名、参数、局部变量等。
+    info locals：显示当前函数的局部变量的值。
+    info registers：显示当前程序执行时的寄存器状态，包括通用寄存器、特殊寄存器等。
+    info threads：显示当前线程的信息，包括线程编号、线程状态等。
+    info inferiors：显示当前程序的进程信息，包括进程编号、进程状态等。
+    info program：显示程序的加载地址和执行路径等信息。
+    info sharedlibrary：显示已加载的共享库的信息。
+    info source：显示当前源文件的信息，包括文件名、行数等。
+
+}
+
+./logdy-core --ui-ip 0.0.0.0 --port 8070 --verbose follow /home/lichao/gitWork/nginx/build/logs/error.log --full-read
+
+
+vxlan报文格式
+https://www.cnblogs.com/tortoise512/p/12845064.html
+
+:Redis官网
+http://redis.io/
+:Redis中文官网
+http://redis.cn/
+:在线体验Redis
+http://try.redis.io/
+:Redis开发版本源码
+https://github.com/antirez/redis
+:Redis命令参考
+http://www.redisdoc.com/en/latest/
+:Redis系类文章
+http://blog.nosqlfan.com/topics/redis
+Redis设计与实现
+http://redisbook.readthedocs.org/en/latest/
+注释版Redis源码
+https://github.com/huangz1990/annotated_redis_source
+
+python web 部署：nginx + gunicorn + supervisor + flask 部署笔记
+https://www.jianshu.com/p/be9dd421fb8d
+
+freebsd收发包
+https://blog.csdn.net/h_cszc/article/details/7701319
+
+镜像源
+https://blog.csdn.net/gumc123/article/details/140186779
+
+重新挂在共享文件夹
+vmware-hgfsclient
+sudo vmhgfs-fuse .host:/ubuntushare /mnt/hgfs -o allow_other
+
+lwip精讲
+https://hiknow.hikvision.com.cn/kms/sys/attachment/sys_att_main/sysAttMain.do?method=view&fdId=17c97b6e559d267d06be5a14844ab4b5
+
+docker命令
+https://blog.csdn.net/qq_44700578/article/details/136456291
+
+docker镜像源
+https://blog.csdn.net/m0_74173363/article/details/141710750
+
+ubantu更换中科大源
+https://blog.csdn.net/qq_45142622/article/details/137774011
+
+nginx+waf
+https://blog.csdn.net/yangshangwei/article/details/139025932?spm=1001.2014.3001.5501
+
+tcpdump分解
+https://blog.csdn.net/qq877728715/article/details/140500426
+1. 捕获控制参数：  
+    -i：指定要监听的网卡。  
+    -c：指定要捕获的数据包数量。  即在收到指定数量的数据包后退出tcpdump
+    -s：指定要捕获的数据包的大小。  
+    -w：将捕获的数据包保存到文件中。  
+2. 显示控制参数：  
+    -n：以数字形式显示地址，而不是尝试解析为主机名。  
+    -A：以 ASCII 格式显示数据包内容。  
+    -v #输出稍微详细的信息，例如在ip包中可以包括ttl和服务类型的信息
+    -vv#输出详细的报文信息
+3. 过滤参数：  
+    host <host>：      捕获特定主机的数据包。  
+    net <network>：    捕获特定网络的数据包。  
+    port <port>：      捕获特定端口的数据包。  
+    src <source>：     捕获特定源地址的数据包。  
+    dst <destination>：捕获特定目标地址的数据包。
+    mac地址	指定mac地址进行抓包 src mac：源mac ，dst mac：目的mac  
+    protocol	 捕获特协议的数据包。  
+4.读取和写入
+    -r <后缀为.pcap文件>  #从指定的文件中读取数据，一般是-w保存的文件
+    -w <后缀为.pcap文件>  #将捕获到的信息保存到文件中，且不分析和打印在屏幕    
+5. 其他参数：  
+    -X： 以十六进制和 ASCII 格式显示数据包内容。  
+    -t #在输出的每一行不打印时间戳
+	-tt #在每一行中输出非格式化的时间戳
+	-ttt #输出本行和前面以后之间的时间差
+	-tttt #在每一行中输出data处理的默认格式的时间戳
+    -q：以更安静的模式运行，减少输出信息。 
+    -d #将匹配信息包的代码以人们能够理解的汇编格式输出 
+    -D #打印系统中所有可以监控的网络接口
+
+
+华为文档路由
+https://support.huawei.com/enterprise/zh/doc/EDOC1100389697/b38b2b8e
+
+linux源码分析
+https://github.com/liexusong/linux-source-code-analyze/blob/master/README.md
+
+dpdk简单讲解
+https://zhuanlan.zhihu.com/p/692774826
+
+openwrt安装教程
+https://blog.csdn.net/wykqh/article/details/126183262
+
+grep用法详解
+https://blog.csdn.net/qq_42226855/article/details/126116895
+
+网络编程函数简单讲解
+https://blog.csdn.net/u012041952/article/details/38458187
+
+tcp三次握手
+https://blog.csdn.net/clayhell/article/details/130042860
+
+CMakeListes.txt精讲
+https://blog.csdn.net/m0_53685032/article/details/126988487
+
+go tool精讲
+https://blog.csdn.net/RA681t58CJxsgCkJ31/article/details/132152685
+
+tr的用法
+https://blog.csdn.net/redrose2100/article/details/128374863
+
+协议栈干货
+https://blog.csdn.net/qq_37712687/article/details/128179169
+
+重传精讲
+https://blog.csdn.net/u011285208/article/details/129332700
+
+IPv4报文头
+https://zhuanlan.zhihu.com/p/387551624?utm_id=0
+
+拥塞控制和流量控制
+https://blog.csdn.net/rock_joker/article/details/66981693
+
+粘包图解
+https://zhuanlan.zhihu.com/p/512268963
+
+go语言讨论
+https://github.com/golang/go/wiki/GoTalks
+
+mysql用户操作
+https://blog.csdn.net/wangxuelei036/article/details/115552727
+ 
+mysql安装教程
+https://zhuanlan.zhihu.com/p/37152572?utm_medium=social&utm_oi=73819058339840&utm_campaign=shareopn
+
+LD_DEBUG=libs webdev &
+
+ int 最大值2147483647
+
+ Start-Process -FilePath "myprogram.exe" -WindowStyle Hidden
+
+rename 's/\.c/\.h/'  ./*
+
+203.208.40.66 translate.google.com
+203.208.40.66 translate.googleapis.com
+
+
+为什么需要time_wait精讲
+https://www.cnblogs.com/soft-engineer/p/15099701.html
+
+ptmalloc精讲
+https://blog.csdn.net/initphp/article/details/50833036
+
+memcached原理
+https://zhuanlan.zhihu.com/p/26771627
+
+同异步非阻塞精讲
+https://blog.csdn.net/enlaihe/article/details/112270378
+
+task_struct进程详解
+https://blog.csdn.net/Rae8023/article/details/70037515
+
+static inline精讲
+https://blog.csdn.net/fengyuesong/article/details/130315267
+
+nginx源码分析
+https://blog.csdn.net/initphp/category_9226172.html
+
+设计模式精讲
+https://zhuanlan.zhihu.com/p/575645268
+
+分组交换技术精讲
+https://blog.csdn.net/LiMubai_CN/article/details/89044384
+
+组播地址默认分配的地址
+https://blog.csdn.net/m0_51551385/article/details/122327966
+
+路由器端口介绍
+https://blog.csdn.net/lee_jessica/article/details/107494714
+
+gantt和pert
+https://blog.csdn.net/qq_38463737/article/details/120053626
+
+寄存器精讲
+https://blog.csdn.net/weixin_27015733/article/details/119164499
+
+计算机硬件组成
+https://blog.csdn.net/hongtao_6/article/details/81589026
+
+以太网标准
+https://blog.csdn.net/GarfieldGCat/article/details/81586026
+
+RIP V1和V2区别
+https://blog.csdn.net/xianweijian/article/details/48178801
+
+虚电路
+https://blog.csdn.net/myRealization/article/details/122995022
+
+MPLS
+https://blog.csdn.net/Rong_Toa/article/details/110261590
+
+虚拟存储器
+https://blog.csdn.net/weixin_40491661/article/details/121269407
+
+IPsec介绍
+https://blog.csdn.net/qq_45782298/article/details/116427421
+
+dhcp报文交互详解
+https://blog.csdn.net/frank_jb/article/details/108877109
+
+以太网传输介质
+https://blog.csdn.net/aa526142770/article/details/102401418
+
+浮点数精讲
+https://blog.csdn.net/weixin_42454243/article/details/123708836
+
+软考-网络工程师
+https://max.book118.com/html/2022/1031/5214142134010012.shtm
+https://max.book118.com/html/2021/0219/6214234152003104.shtm
+
+
+STP精讲
+https://blog.csdn.net/weixin_55807049/article/details/122752526
+
+QUIC精讲
+https://blog.csdn.net/qawsedrf123lala/article/details/118783955?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522167583985716800182151610%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=167583985716800182151610&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_click~default-2-118783955-null-null.142^v73^insert_down3,201^v4^add_ask,239^v1^insert_chatgpt&utm_term=QUIC&spm=1018.2226.3001.4187
+
+mongodb精讲
+https://www.cnblogs.com/javaguide/p/mongodb-questions.html
+
+auto_ptr和unique_ptr
+https://blog.csdn.net/shyjhyp11/article/details/117064947
+
+nullptr
+https://zhuanlan.zhihu.com/p/270390408
+
+为什么复制构造函数的参数需要加const和引用
+https://blog.csdn.net/weixin_44754004/article/details/121008940
+
+虚表存放在哪里
+https://blog.csdn.net/w612689292/article/details/51250285
+
+c++题目精讲
+https://blog.csdn.net/cdlwhm1217096231/article/details/90812810
+
+redis题目精讲
+https://hcshow.blog.csdn.net/article/details/127171339?spm=1001.2014.3001.5502
+
+redis安装教程
+https://blog.csdn.net/X_lsod/article/details/123263429
+
+每个人都应该了解的内存知识（英文）
+https://www.oschina.net/translate/what-every-programmer-should-know-about-memory-part1?lang=chs&p=6
+
+解决node-sass安装失败问题
+https://blog.csdn.net/m0_58803607/article/details/120927506
+
+python安装
+https://zhuanlan.zhihu.com/p/122426116
+
+key.pem和cert.pem生成方法
+https://www.jianshu.com/p/1de38a3f50f3
+
+书籍
+https://github.com/justjavac/free-programming-books-zh_CN
+https://github.com/jobbole/awesome-programming-books
+https://github.com/ruanyf/free-books
+https://github.com/itdevbooks/pdf
+
+书籍种类完全
+https://github1s.com/justjavac/free-programming-books-zh_CN 
+
+https://github.com/EbookFoundation/free-programming-books/blob/main/books/free-programming-books-zh.md
+
+武汉mf
+https://www.cnblogs.com/rui1236/p/13410796.html
+
+vscode中c++安装
+https://blog.csdn.net/qq_40477151/article/details/103917156
+
+-fPIC精讲
+https://blog.csdn.net/parallelyk/article/details/42747239?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.not_use_machine_learn_pai&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.not_use_machine_learn_pai
+
+appScan跨站脚本攻击
+https://www.cnblogs.com/meInfo/p/9147523.html
+
+nginx下载
+http://nginx.org/en/download.html
+
+nginx.conf精解
+https://www.cnblogs.com/54chensongxia/p/12938929.html
+
+nginx源码分析
+https://blog.csdn.net/yangyin007/article/details/82777086
+
+yarn的安装和使用
+https://blog.csdn.net/yw00yw/article/details/81264533
+执行yarn报错： yarn.ps1，因为在此系统上禁止运行脚本
+https://blog.csdn.net/inthat/article/details/115471596
+
+dp精讲
+https://zhuanlan.zhihu.com/p/326698607
+
+超时重传精讲
+https://blog.csdn.net/qq_38229124/article/details/123831752
+
+tcp传输可靠性
+https://zhuanlan.zhihu.com/p/492149728
+
+tcp分片而不再IP分片精讲
+https://blog.csdn.net/nswdiphone6/article/details/115695003
+
+tcp分段IP分片精讲
+https://blog.csdn.net/coderising/article/details/118384130
+
+tcp所有定时器介绍
+https://zhuanlan.zhihu.com/p/272774726
+
+go环境下载安装
+https://cloud.tencent.com/developer/article/1867433
+
+c中结构体为什么变量不能声明为静态的
+https://blog.csdn.net/LuckyDan61/article/details/5526367
+
+ecma262标准
+https://tc39.es/ecma262/#sec-intro
+
+win下go环境配置
+https://cloud.tencent.com/developer/article/1867433
+
+vue后台管理网站巨牛
+http://admin.spicyboy.cn/#/login
+
+win下配置mosquitto
+https://blog.csdn.net/bobi77/article/details/124246938
+
+epoll精讲
+https://zhuanlan.zhihu.com/p/93609693
+
+指针加减讲解
+https://blog.csdn.net/zouluhendiao/article/details/121050230
+
+va_*系列精讲
+https://blog.csdn.net/mediatec/article/details/94637013
+
+程序内存精讲
+https://blog.csdn.net/qq_39499621/article/details/92092718
+
+select/poll/epoll精讲
+https://www.baidu.com/s?ie=UTF-8&wd=site%3Acsdn.net%20select%20poll%20epoll
+https://blog.csdn.net/m0_64420260/article/details/122385244
+
+无栈协程和有栈协程精讲  没太看懂
+https://blog.csdn.net/weixin_43705457/article/details/106924426
+
+进程上下文切换精讲 
+https://blog.csdn.net/jinking01/article/details/124883755
+
+进程上下文切换场景
+https://blog.csdn.net/mark_jie66/article/details/118614803
+
+LRU缓存精讲
+https://blog.csdn.net/g6U8W7p06dCO99fQ3/article/details/119901416
+
+c/c++面试精讲
+https://github.com/huihut/interview
+
+google网页翻译不可用解决办法
+https://zhuanlan.zhihu.com/p/572309700
+
+mongodb安装方法 win下
+https://blog.csdn.net/qq_21103471/article/details/124706915
+
+koa简单实例
+http://t.zoukankan.com/ibear-p-14755055.html
+
+有符号32位转为无符号64位符号扩展问题
+https://www.cnblogs.com/sheniudou/archive/2013/04/17/3026421.html
+https://blog.csdn.net/wbo4958/article/details/48313649
+https://blog.csdn.net/qq_45477402/article/details/124450645
+https://blog.csdn.net/weixin_43939128/article/details/104788583
+https://blog.csdn.net/vspiders/article/details/54728443
+https://blog.csdn.net/macrossdzh/article/details/7256133
+
+
+
+1. ‌注册与环境准备‌
+‌注册微信开发者账号‌：访问微信公众平台，注册小程序账号并完成实名认证。
+‌安装开发者工具‌：下载并安装微信开发者工具，用于代码编辑、调试和预览。
+2. ‌项目创建与结构设计‌
+‌创建项目‌：在开发者工具中新建项目，填写AppID（测试号可使用测试ID），选择目录并创建。
+‌理解项目结构‌：
+app.js：小程序逻辑（全局数据、生命周期）。
+app.json：全局配置（页面路径、窗口样式、网络超时等）。
+app.wxss：全局样式。
+pages/：页面目录（每个页面包含.js、.wxml、.wxss、.json）。
+3. ‌页面开发与功能实现‌
+‌WXML结构‌：使用类似HTML的标签（如<view>、<text>）构建页面结构。
+‌WXSS样式‌：支持CSS大部分特性，并新增尺寸单位rpx适配不同屏幕。
+‌JS逻辑‌：处理用户交互（如点击事件bindtap）、调用API（如wx.request请求数据）。
+‌JSON配置‌：页面级配置（如导航栏标题navigationBarTitleText）。
+4. ‌数据管理与网络请求‌
+‌数据绑定‌：通过Page({ data: {} })定义初始数据，使用{{}}在WXML中渲染。
+‌网络请求‌：使用wx.request()发起HTTPS请求（需在后台配置合法域名）。
+‌本地存储‌：通过wx.setStorage()和wx.getStorage()实现数据持久化。
+5. ‌调试与测试‌
+‌模拟器调试‌：在开发者工具中使用Console、Network、Storage等面板查看运行状态。
+‌真机预览‌：点击“预览”生成二维码，在微信中扫码测试兼容性。
+‌性能优化‌：减少setData频率、压缩图片、避免页面逻辑过于复杂。
+6. ‌发布与运营‌
+‌上传代码‌：在工具中点击“上传”，填写版本号和项目备注。
+‌后台提交审核‌：登录微信公众平台，在“开发管理”中提交审核。
+‌发布上线‌：审核通过后，点击“发布”即可在微信中访问。
+‌数据分析‌：通过后台“数据助手”监控用户行为（如访问量、留存率）。
+7. ‌进阶功能（可选）‌
+‌云开发‌：使用微信云数据库、云函数、云存储简化后端逻辑。
+‌组件化开发‌：封装自定义组件（如弹窗、列表项）提高代码复用性。
+‌第三方集成‌：接入微信支付、地图、广告等原生能力。
+‌关键提示‌：小程序开发需严格遵守微信小程序开发规范，确保合法域名、HTTPS请求及用户隐私保护。
